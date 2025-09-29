@@ -1,0 +1,1033 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anuj Impex – Clothing Brand</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
+  <style>
+    /* Dark mode styles */
+body.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark nav {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+
+body.dark nav ul li:hover,
+body.dark nav ul li.active {
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark .marquee {
+  background-color: #333;
+  color: #eee;
+}
+
+body.dark .products .product {
+  background-color: #222;
+  border-color: #444;
+  color: #eee;
+  box-shadow: none;
+}
+
+body.dark #searchBar {
+  background-color: #333;
+  border: 1px solid #555;
+  color: #eee;
+}
+
+body.dark #searchBar::placeholder {
+  color: #bbb;
+}
+
+/* Optional styling for toggle button */
+#darkModeToggle {
+  margin-left: 15px;
+  padding: 6px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#darkModeToggle:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+body.dark #darkModeToggle {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+body.dark #darkModeToggle:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.5;
+    }
+    header {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+    .brand-name {
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+    header p {
+      margin: 0.5rem 0;
+      font-weight: 300;
+    }
+    .marquee-wrapper {
+      background: #222;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: content-box;
+    }
+    .marquee {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 15s linear infinite;
+      color: #fff;
+    }
+    .marquee a {
+      color: #00e676;
+      text-decoration: underline;
+    }
+    @keyframes marquee {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-100%, 0); }
+    }
+
+    nav {
+      background-color: #222;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 1.2rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.05rem;
+      transition: color 0.25s;
+    }
+    nav a:hover {
+      color: #00d084;
+    }
+
+    .container {
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: #111;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .search-bar input {
+      width: 80%;
+      max-width: 400px;
+      padding: 0.6rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    .search-bar input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .category-buttons {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .category-buttons button {
+      margin: 0 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid #007bff;
+      background: #fff;
+      color: #007bff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 1rem;
+    }
+    .category-buttons button.active,
+    .category-buttons button:hover {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .product {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .product.hidden {
+      display: none !important;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    .product img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .product h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      flex-grow: 0;
+    }
+    .product p.price {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+    .product .controls {
+      margin-top: auto;
+    }
+    .product input.qty-input {
+      width: 60px;
+      padding: 0.4rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+      margin-right: 0.5rem;
+    }
+    .product button {
+      padding: 0.65rem 1rem;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      margin: 0.25rem 0;
+      width: 100%;
+    }
+    .product .add-to-cart {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .product .add-to-cart:hover {
+      background-color: #0056b3;
+    }
+    .product .buy-now {
+      background-color: #28a745;
+      color: #fff;
+    }
+    .product .buy-now:hover {
+      background-color: #1e7e34;
+    }
+
+    .cart-icon {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      background-color: #007bff;
+      color: #fff;
+      padding: 0.8rem;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 1100;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+    .cart-icon:hover {
+      background-color: #0056b3;
+    }
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background-color: red;
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      text-align: center;
+      line-height: 20px;
+      font-weight: 600;
+      pointer-events: none;
+      display: none;
+    }
+
+    .cart-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1200;
+    }
+    .cart-popup {
+      background: #fff;
+      width: 90%;
+      max-width: 380px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      max-height: 80vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-popup h3 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: #222;
+      text-align: center;
+    }
+    .cart-items {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    .cart-item-name {
+      font-weight: 600;
+      font-size: 1rem;
+      max-width: 70%;
+      word-break: break-word;
+    }
+    .cart-item-remove {
+      background: transparent;
+      border: none;
+      color: crimson;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0 6px;
+      transition: color 0.3s;
+    }
+    .cart-item-remove:hover {
+      color: darkred;
+    }
+    .cart-total {
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: right;
+      margin-bottom: 1rem;
+    }
+    .cart-close-btn, .cart-buy-all-btn {
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+      margin: 0.25rem 0;
+    }
+    .cart-close-btn {
+      background-color: #111;
+      color: #fff;
+    }
+    .cart-close-btn:hover {
+      background-color: #333;
+    }
+    .cart-buy-all-btn {
+      background-color: #28a745;
+      color: #fff;
+    }
+    .cart-buy-all-btn:disabled {
+      background-color: #bbb;
+      cursor: not-allowed;
+    }
+    .cart-buy-all-btn:hover:not(:disabled) {
+      background-color: #1e7e34;
+    }
+
+    form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 2rem auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    form label {
+      font-weight: 500;
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    form button {
+      background-color: #111;
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background-color: #333;
+    }
+
+    /* Review section styles */
+    .product-reviews {
+      margin-top: 3rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .reviews-container {
+      margin-top: 2rem;
+    }
+    .review {
+      border-top: 1px solid #eee;
+      padding: 1rem 0;
+    }
+    .review:first-child {
+      border-top: none;
+    }
+    .review h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: #222;
+    }
+    .review .rating {
+      color: #ffb400;
+      margin-bottom: 0.5rem;
+    }
+    .review p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    footer {
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+    footer p {
+      margin: 0.5rem 0;
+    }
+    footer .about {
+      margin-top: 1.5rem;
+    }
+    footer .about h2 {
+      color: #ddd;
+      margin-bottom: 1rem;
+    }
+    footer .about p {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      nav a {
+        margin: 0 0.8rem;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Floating Cart Icon -->
+  <div class="cart-icon" id="cart-icon" title="View Cart">
+    <i class="fas fa-shopping-cart"></i>
+    <div class="cart-count" id="cart-count">0</div>
+  </div>
+
+  <header>
+    <div class="brand-name">Anuj Impex</div>
+    <p>Premium Clothing for All</p>
+
+    <div class="marquee-wrapper">
+      <div class="marquee">
+        📞 Contact us on: 9844641111 or 9804905500  •  Chat with us on <a href="https://wa.me/9779844641111" target="_blank">WhatsApp</a>  •  GET up to 17% OFF ON DASH AIN SALE by visiting our local store
+      </div>
+      
+    </div>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+    <button id="darkModeToggle">Dark Mode</button>
+
+  </nav>
+  
+
+
+  <section class="container" id="products">
+    <h2>Our Products</h2>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search products..." />
+    </div>
+
+    <!-- Category filter buttons -->
+    <div class="category-buttons">
+      <button class="active" data-cat="all">All</button>
+      <button data-cat="men">Men</button>
+      <button data-cat="women">Women</button>
+      <button data-cat="accessories">Accessories</button>
+    </div>
+    
+
+    <div class="products">
+      <!-- Example product -->
+      <div class="product" data-name="Gray T-shirt" data-price="899" data-category="men">
+        <img src="ca3001cvc_1_hstm.jpg" alt="Gray T-shirt" />
+        <h3>Gray T-shirt</h3>
+        <p class="price">Rs.995</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Denim Jeans" data-price="1499" data-category="men">
+        <img src="1s24i104_1100.jpg" alt="Denim Jeans" />
+        <h3>Denim Jeans</h3>
+        <p class="price">Rs. 1499</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Gofi Set" data-price="1100" data-category="men">
+        <img src="21A4934-1-scaled-e1742207279211.jpg" alt="Gofi Set" />
+        <h3>Gofi Set</h3>
+        <p class="price">Rs. 1599</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Trouser" data-price="1400" data-category="men">
+        <img src="550095131_2668691430143651_7912736953968351619_n.jpg" alt="Trouser" />
+        <h3>Trouser</h3>
+        <p class="price">Rs. 1400</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Gucci Shirt" data-price="1799" data-category="men">
+        <img src="547017831_2663254000687394_5618858582583620404_n.jpg" alt="Gucci Shirt" />
+        <h3>Gucci Shirt</h3>
+        <p class="price">Rs. 899</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Women Jeans Set" data-price="2498" data-category="women">
+        <img src="549657493_2668691216810339_3392843026636989680_n.jpg" alt="Women Jeans Set" />
+        <h3>Women Jeans Set</h3>
+        <p class="price">Rs. 3498</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Men's Check Shirt" data-price="1399" data-category="men">
+        <img src="547230937_2663254750687319_6911152181842261988_n.jpg" alt="Men's Check Shirt" />
+        <h3>Men's Check Shirt</h3>
+        <p class="price">Rs. 1199</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Off Shoulder Top" data-price="1799" data-category="women">
+        <img src="550495462_2668691603476967_1450240303271732377_n.jpg" alt="Off Shoulder Top" />
+        <h3>Off Shoulder Top</h3>
+        <p class="price">Rs. 1199</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="NY Yankees Cap" data-price="499" data-category="accessories">
+        <img src="51+8OFrgCHL._AC_SL1000_.jpg" alt="NY Yankees Cap" />
+        <h3>NY Yankees Cap</h3>
+        <p class="price">Rs. 299</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Lux Cozi Underwear" data-price="399" data-category="accessories">
+        <img src="51liamZAH+L._UY1100_.jpg" alt="Lux Cozi Underwear" />
+        <h3>Lux Cozi Underwear</h3>
+        <p class="price">Rs. 219</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Lux Cozi Innerwear" data-price="399" data-category="accessories">
+        <img src="a2d3d90e494dfe89a51e13c847c5c1b3.jpg" alt="Lux Cozi Innerwear" />
+        <h3>Lux Cozi Innerwear</h3>
+        <p class="price">Rs. 239</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Cat Bag" data-price="2999" data-category="accessories">
+        <img src="111blk.webp" alt="Cat Bag" />
+        <h3>Cat Bag</h3>
+        <p class="price">Rs. 1049</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Men's Belt" data-price="899" data-category="accessories">
+        <img src="81lS2yAD7rL._UY1000_.jpg" alt="Men's Belt" />
+        <h3>Men's Belt</h3>
+        <p class="price">Rs. 899</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Men's Wallet" data-price="1199" data-category="accessories">
+        <img src="MENBENSE-Short-Slim-Made-Money-Bag-Vintage-Men-Leather-Wallet_0.jpg" alt="Men's Wallet" />
+        <h3>Men's Wallet</h3>
+        <p class="price">Rs. 499</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Socks" data-price="299" data-category="accessories">
+        <img src="71V1IO5NpYL._UY1000_.jpg" alt="Socks" />
+        <h3>Socks</h3>
+        <p class="price">Rs. 99</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Argentina Jersey" data-price="999" data-category="accessories">
+        <img src="unnamed.jpg" alt="Argentina Jersey" />
+        <h3>Argentina Jersey</h3>
+        <p class="price">Rs. 799</p>
+        <div class="controls">
+          <input type="number" min="1" value="1" class="qty-input" />
+          <button class="add-to-cart">Add to Cart</button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product" data-name="Ray-Ban Sunglasses" data-price="1399" data-category="accessories">
+        <img src="0RB3016__W0365__STD__noshad__fr.avif" alt="Ray‑Ban Sunglasses" />
+        <h3>Ray‑Ban Sunglasses</h3>
+        <p class="price">Rs. 1399 (out of stock)</p>
+        
+      </div>
+
+    </div> <!-- end .products -->
+
+    <!-- Product Reviews -->
+    <div class="product-reviews">
+      <h2>Customer Reviews</h2>
+
+      <!-- Review Form -->
+      <form id="review-form">
+        <label for="review-name">Your Name:</label>
+        <input type="text" id="review-name" name="review-name" required />
+
+        <label for="review-product">Product Name:</label>
+        <input type="text" id="review-product" name="review-product" required />
+
+        <label for="review-text">Your Review:</label>
+        <textarea id="review-text" name="review-text" rows="4" required></textarea>
+
+        <label for="review-rating">Rating (1–5):</label>
+        <input type="number" id="review-rating" name="review-rating" min="1" max="5" required />
+
+        <button type="submit">Submit Review</button>
+      </form>
+
+      <!-- Review Display -->
+      <div id="reviews-container" class="reviews-container">
+        <p>No reviews yet. Be the first to review!</p>
+      </div>
+    </div>
+    <!-- end product reviews -->
+
+    <!-- Cart Overlay / Popup -->
+    <div class="cart-overlay" id="cart-overlay">
+      <div class="cart-popup">
+        <h3>Your Cart</h3>
+        <div class="cart-items" id="cart-items">
+          <!-- Items will be injected here -->
+        </div>
+        <div class="cart-total" id="cart-total">Total: Rs. 0</div>
+        <button class="cart-buy-all-btn" id="buy-all-btn" disabled>Buy All</button>
+        <button class="cart-close-btn" id="close-cart-btn">Close</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container">
+    <h2>Contact Us</h2>
+    <form id="contact-form" action="https://formsubmit.co/youremail@example.com" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Message (Phone number and address are compulsory):</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Anuj Impex. All rights reserved.</p>
+    <p>Our location: Old Hicola Road, Birtamode</p>
+
+    <div class="about">
+      <h2>About Us</h2>
+      <p>
+        We are passionate about providing quality products with excellent customer service. We provide you with
+        quality clothing accessories. We ensure good quality of fabric and materials in every item we provide.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Cart state
+    let cart = [];
+
+    // DOM elements
+    const cartIcon = document.getElementById('cart-icon');
+    const cartCountEl = document.getElementById('cart-count');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+    const buyAllBtn = document.getElementById('buy-all-btn');
+    const cartTotalEl = document.getElementById('cart-total');
+
+    const categoryButtons = document.querySelectorAll('.category-buttons button');
+    const productElems = document.querySelectorAll('.product');
+    const searchInput = document.getElementById('search-input');
+
+    // Show/hide cart popup
+    cartIcon.addEventListener('click', () => {
+      cartOverlay.style.display = 'flex';
+    });
+    closeCartBtn.addEventListener('click', () => {
+      cartOverlay.style.display = 'none';
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize product buttons
+      productElems.forEach(card => {
+        const btnAdd = card.querySelector('.add-to-cart');
+        const btnBuy = card.querySelector('.buy-now');
+        const qtyInput = card.querySelector('.qty-input');
+        const name = card.dataset.name;
+        const price = parseInt(card.dataset.price, 10);
+
+        btnAdd.addEventListener('click', () => {
+          const qty = parseInt(qtyInput.value, 10) || 1;
+          addToCart(name, price, qty);
+        });
+
+        btnBuy.addEventListener('click', () => {
+          buyNow(name, price);
+        });
+      });
+
+      updateCartUI();
+
+      // Category button click events
+      categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          categoryButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.getAttribute('data-cat');
+          filterProducts(cat, searchInput.value.trim().toLowerCase());
+        });
+      });
+
+      // Search input event
+      searchInput.addEventListener('input', () => {
+        const catBtnActive = document.querySelector('.category-buttons button.active');
+        const currentCat = catBtnActive ? catBtnActive.getAttribute('data-cat') : 'all';
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        filterProducts(currentCat, searchTerm);
+      });
+    });
+
+    function filterProducts(category, searchTerm) {
+      productElems.forEach(prod => {
+        const prodCat = prod.getAttribute('data-category');
+        const name = prod.dataset.name.toLowerCase();
+
+        const matchesCategory = (category === 'all' || prodCat === category);
+        const matchesSearch = name.includes(searchTerm);
+
+        if (matchesCategory && matchesSearch) {
+          prod.classList.remove('hidden');
+        } else {
+          prod.classList.add('hidden');
+        }
+      });
+    }
+
+    function addToCart(name, price, qty = 1) {
+      const idx = cart.findIndex(item => item.name === name);
+      if (idx !== -1) {
+        cart[idx].quantity += qty;
+      } else {
+        cart.push({ name, price, quantity: qty });
+      }
+      updateCartUI();
+      alert(`${qty} × ${name} added to cart.`);
+    }
+
+    function removeCartItem(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      updateCartCount();
+      renderCartItems();
+      updateCartTotal();
+      updateBuyAllButton();
+    }
+
+    function updateCartCount() {
+      const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCountEl.textContent = totalQty;
+      cartCountEl.style.display = totalQty > 0 ? 'block' : 'none';
+    }
+
+    function renderCartItems() {
+      cartItemsContainer.innerHTML = '';
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="cart-empty">Your cart is empty</p>';
+        return;
+      }
+      cart.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.classList.add('cart-item');
+        div.innerHTML = `
+          <span class="cart-item-name">${item.name} (x${item.quantity})</span>
+          <button class="cart-item-remove" title="Remove" data-index="${idx}">&times;</button>
+        `;
+        cartItemsContainer.appendChild(div);
+      });
+      const removeBtns = cartItemsContainer.querySelectorAll('.cart-item-remove');
+      removeBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const idx = parseInt(e.target.dataset.index, 10);
+          removeCartItem(idx);
+        });
+      });
+    }
+
+    function updateCartTotal() {
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      cartTotalEl.textContent = `Total: Rs. ${total}`;
+    }
+
+    function updateBuyAllButton() {
+      buyAllBtn.disabled = cart.length === 0;
+    }
+
+    buyAllBtn.addEventListener('click', () => {
+      if (cart.length === 0) return;
+      let msg = 'Hi, I want to order:\n';
+      cart.forEach(item => {
+        msg += `• ${item.name} × ${item.quantity} — Rs. ${item.price * item.quantity}\n`;
+      });
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      msg += `\nTotal: Rs. ${total}`;
+      const encoded = encodeURIComponent(msg);
+      window.open(`https://wa.me/9779844641111?text=${encoded}`, '_blank');
+    });
+
+    function buyNow(name, price) {
+      const msg = `Hi, I want to buy ${name} priced at Rs. ${price}.`;
+      const encoded = encodeURIComponent(msg);
+      window.open(`https://wa.me/9779844641111?text=${encoded}`, '_blank');
+    }
+  </script>
+
+  <script>
+    // Review form logic: show all reviews
+    const reviewForm = document.getElementById('review-form');
+    const reviewsContainer = document.getElementById('reviews-container');
+
+    reviewForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('review-name').value.trim();
+      const product = document.getElementById('review-product').value.trim();
+      const text = document.getElementById('review-text').value.trim();
+      const rating = parseInt(document.getElementById('review-rating').value, 10);
+
+      if (!name || !product || !text || isNaN(rating) || rating < 1 || rating > 5) {
+        alert('Please fill in all fields with valid values.');
+        return;
+      }
+
+      const reviewEl = document.createElement('div');
+      reviewEl.classList.add('review');
+      reviewEl.innerHTML = `
+        <h4>${name} on <em>${product}</em></h4>
+        <div class="rating">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</div>
+        <p>${text}</p>
+      `;
+
+      // If default “No reviews yet” message exists, remove it
+      const defaultMsg = reviewsContainer.querySelector('p');
+      if (defaultMsg) {
+        defaultMsg.remove();
+      }
+
+      // Prepend the new review so latest appears first
+      reviewsContainer.prepend(reviewEl);
+
+      reviewForm.reset();
+    });
+  </script>
+  <script>const darkModeToggle = document.getElementById('darkModeToggle');
+
+darkModeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  if (document.body.classList.contains('dark')) {
+    darkModeToggle.textContent = 'Light Mode';
+  } else {
+    darkModeToggle.textContent = 'Dark Mode';
+  }
+});
+</script>
+</body>
+</html>
